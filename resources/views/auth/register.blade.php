@@ -40,6 +40,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control @error('role_id') is-invalid @enderror" id="role_id" name="role_id">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('role_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
