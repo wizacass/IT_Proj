@@ -1,22 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <p>You are logged in as {{ $user->role->name }}, {{ $user->email }}! </p>
-                </div>
-            </div>
+<x-hero>Dashboard</x-hero>
+<div class="container" style="padding: 1em">
+    <div class="card">
+        <div class="card-body has-text-centered" style="padding: 1em">
+            <p>You are logged in as {{ $user->role->name }}, {{ $user->email }}! </p>
         </div>
     </div>
 </div>
