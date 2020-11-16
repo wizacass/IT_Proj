@@ -1,0 +1,7 @@
+{
+    "php.suggest.basic": false,
+    "emmet.includeLanguages": {
+        "blade": "html"
+    },
+    "intelephense.diagnostics.undefinedTypes": false
+}
