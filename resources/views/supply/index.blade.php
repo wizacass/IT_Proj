@@ -1,0 +1,1 @@
+<p>Supply view</p>

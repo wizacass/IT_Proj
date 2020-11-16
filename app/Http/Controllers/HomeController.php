@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Break_;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('home', compact('user'));
+
+        switch ($user->role_id) {
+            case 2:
+                return redirect('/supply');
+            default:
+                return view('home', compact('user'));
+        }
     }
 }
