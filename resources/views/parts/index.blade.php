@@ -21,7 +21,9 @@
                             <td> {{ $parts[$i]->model }} </td>
                             <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
                             <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
-                            <td class="has-text-centered"><a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a></td>
+                            <td class="has-text-centered">
+                                <a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a>
+                            </td>
                         </tr>
                     @endfor
                 </tbody>
