@@ -23,8 +23,25 @@
                 </a>
             </div>
 
-            <div class="content" v-for="i in count">
-                <x-inlineinput label="Part" for="parts[]" />
+            <div class="box" v-if="count > 0">
+                <div class="level" v-for="i in count">
+                    <div class="level-item">
+                        <p> @{{ i }} </p>
+                    </div>
+                    <div class="level-item">
+                        <div class="select is-fullwidth">
+                            <select name=parts[]>
+                                <option>Select a part</option>
+                                @foreach ($parts as $part)
+                                    <option value="{{ $part->id }}"> {{ $part->part_type }} {{ $part->model }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="level-item">
+                        <x-inlineinput label="Amount" for="part_counts[]" type="number"/>
+                    </div>
+                </div>
             </div>
 
             <div class="field has-text-centered">

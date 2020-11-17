@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlanePart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -23,7 +24,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $parts = PlanePart::all();
+        return view('orders.create', compact('parts'));
     }
 
     /**
