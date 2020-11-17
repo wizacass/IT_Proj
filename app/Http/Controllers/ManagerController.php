@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class ManagerController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:supplier');
+        $this->middleware('role:manager');
     }
 
     /**
@@ -21,7 +21,7 @@ class SupplierController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('supply.index', compact('user'));
+        return view('manager.index', compact('user'));
     }
 
     /**
