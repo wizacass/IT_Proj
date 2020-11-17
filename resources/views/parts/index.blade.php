@@ -5,7 +5,7 @@
     <div class="container" style="padding-top: 1em">
         <div class="box">
             <table class="table is-fullwidth is-hoverable">
-                <thead>
+                <thead class="has-text-centered">
                     <th>No.</th>
                     <th>Part type</th>
                     <th>Model</th>
@@ -16,12 +16,12 @@
                 <tbody>
                     @for ($i = 0; $i < count($parts); $i++)
                         <tr>
-                            <td> {{ $i + 1 }} </td>
+                            <td class="has-text-right"> {{ $i + 1 }} </td>
                             <td> {{ $parts[$i]->part_type }} </td>
                             <td> {{ $parts[$i]->model }} </td>
-                            <td> {{ $parts[$i]->price }}$ </td>
-                            <td> {{ $parts[$i]->amount }} </td>
-                            <td><a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a></td>
+                            <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
+                            <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
+                            <td class="has-text-centered"><a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a></td>
                         </tr>
                     @endfor
                 </tbody>
