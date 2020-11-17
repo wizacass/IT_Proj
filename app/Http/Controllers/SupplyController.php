@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class SupplyController extends Controller
 {
     public function __construct()
     {

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PartController;
-use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\SupplyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/supply', SupplierController::class);
+Route::resource('/supply', SupplyController::class);
 Route::resource('/parts', PartController::class);
 Route::resource('/manager', ManagerController::class);
