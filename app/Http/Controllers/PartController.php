@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlanePart;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +40,6 @@ class PartController extends Controller
             'price' => ['required', 'numeric', 'min:0.01'],
             'amount' => ['required', 'integer', 'min:1'],
         ]);
-        $attributes['delivery_time'] = Carbon::now()->addDays($attributes['delivery_time'])->toDateTimeString();
 
         $part = new PlanePart($attributes);
         $part->save();

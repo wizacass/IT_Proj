@@ -19,7 +19,7 @@ class CreatePlanePartsTable extends Migration
             $table->string('model');
             $table->decimal('price');
             $table->unsignedInteger('amount');
-            $table->dateTime('delivery_time');
+            $table->unsignedInteger('delivery_time');
             $table->string('part_type');
             $table->timestamps();
         });
