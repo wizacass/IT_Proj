@@ -13,15 +13,11 @@ class PartController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $supplier = Auth::user()->supplier;
-        return view('parts.index', compact('supplier'));
+        $parts = PlanePart::all();
+        return view('parts.index', compact('supplier', 'parts'));
     }
 
     public function create()
