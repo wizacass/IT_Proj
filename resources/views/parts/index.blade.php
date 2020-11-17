@@ -10,6 +10,7 @@
                     <th>Part type</th>
                     <th>Model</th>
                     <th>Price</th>
+                    <th>Amount</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -19,7 +20,8 @@
                             <td> {{ $parts[$i]->part_type }} </td>
                             <td> {{ $parts[$i]->model }} </td>
                             <td> {{ $parts[$i]->price }}$ </td>
-                            <td><a class="button is-small is-primary is-rounded is-outlined">Show</a></td>
+                            <td> {{ $parts[$i]->amount }} </td>
+                            <td><a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a></td>
                         </tr>
                     @endfor
                 </tbody>

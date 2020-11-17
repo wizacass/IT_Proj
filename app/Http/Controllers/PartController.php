@@ -43,15 +43,9 @@ class PartController extends Controller
         return redirect(route('parts.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(PlanePart $part)
     {
-        //
+        return view('parts.show', compact('part'));
     }
 
     /**
@@ -60,9 +54,9 @@ class PartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PlanePart $part)
     {
-        //
+        dd($part);
     }
 
     /**
@@ -83,8 +77,8 @@ class PartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PlanePart $part)
     {
-        //
+        dd($part);
     }
 }
