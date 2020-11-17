@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class PlanePart extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'manufacturer',
+        'model',
+        'part_type',
+        'delivery_time',
+        'price',
+        'amount',
+    ];
 }

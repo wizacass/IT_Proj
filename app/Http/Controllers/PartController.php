@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlanePart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
 {
@@ -18,28 +21,32 @@ class PartController extends Controller
      */
     public function index()
     {
-        return view('parts.index');
+        $supplier = Auth::user()->supplier;
+        return view('parts.index', compact('supplier'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('parts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $stringValidators = ['required', 'min:3', 'max:255'];
+        $attributes = request()->validate([
+            'manufacturer' => $stringValidators,
+            'model' => $stringValidators,
+            'part_type' => $stringValidators,
+            'delivery_time' => ['required', 'integer', 'min:1'],
+            'price' => ['required', 'numeric', 'min:0.01'],
+            'amount' => ['required', 'integer', 'min:1'],
+        ]);
+        $attributes['delivery_time'] = Carbon::now()->addDays($attributes['delivery_time'])->toDateTimeString();
+
+        $part = new PlanePart($attributes);
+        $part->save();
+
+        return redirect(route('parts.index'));
     }
 
     /**
