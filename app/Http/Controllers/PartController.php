@@ -16,7 +16,7 @@ class PartController extends Controller
     public function index()
     {
         $supplier = Auth::user()->supplier;
-        $parts = PlanePart::all();
+        $parts = $supplier->parts;
         return view('parts.index', compact('supplier', 'parts'));
     }
 
