@@ -74,14 +74,11 @@ class PartController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(PlanePart $part)
     {
-        dd($part);
+        $part->is_orderable = !$part->is_orderable;
+        $part->save();
+
+        return redirect("/parts/$part->id");
     }
 }

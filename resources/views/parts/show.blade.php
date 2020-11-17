@@ -25,7 +25,7 @@
                                     <td> {{ $part->model }} </td>
                                 </tr>
                                 <tr>
-                                    <th>price</th>
+                                    <th>Price</th>
                                     <td> {{ $part->price }}$ </td>
                                 </tr>
                                 <tr>
@@ -37,21 +37,29 @@
                     </div>
                     <footer class="card-footer">
                         <p class="card-footer-item">
-                            <a class="button is-text is-fullwidth has-text-link" href="/parts/{{ $part->id }}/edit">Edit Information</a>
+                            <a class="button is-text is-fullwidth has-text-link" href="/parts/{{ $part->id }}/edit">Edit
+                                Information</a>
                         </p>
                         <form class="card-footer-item" method="POST" action="/parts/{{ $part->id }}">
                             @csrf
                             @method('DELETE')
-                            <button class="button is-text is-fullwidth has-text-danger" type="submit">
-                                <p>Remove Part</p>
-                                <span class="icon">
-                                    <i class="fas fa-lg fa-times"></i>
-                                </span>
-                            </button>
-                        </form>   
-                      </footer>
+                            @if ($part->is_orderable)
+                                <button class="button is-text is-fullwidth has-text-danger" type="submit">
+                                    <p>Remove Part</p>
+                                    <span class="icon">
+                                        <i class="fas fa-lg fa-times"></i>
+                                    </span>
+                                </button>
+                            @else
+                                <button class="button is-text is-fullwidth has-text-link" type="submit">
+                                    <p>Enable orders</p>
+                                </button>
+                            @endif
+                        </form>
+                    </footer>
                 </div>
-            {{-- </div>
+                {{--
+            </div>
             <div class="column">
             </div>
         </div> --}}
