@@ -17,9 +17,9 @@ class HomeController extends Controller
 
         switch ($user->role_id) {
             case 1:
-                return redirect(view('manager.index'));
+                return redirect('/manager');
             case 2:
-                return redirect(view('supply.index'));
+                return redirect('/supply');
             default:
                 return view('home', compact('user'));
         }

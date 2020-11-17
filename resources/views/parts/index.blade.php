@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-hero>"{{ $supplier->name }}" parts</x-hero>
+    @if ($supplier)
+        <x-hero>"{{ $supplier->name }}" parts</x-hero>
+    @else
+        <x-hero>Parts list</x-hero>
+    @endif
     <div class="container" style="padding-top: 1em">
         <div class="box">
             <table class="table is-fullwidth is-hoverable">
@@ -22,7 +26,12 @@
                             <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
                             <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
                             <td class="has-text-centered">
-                                <a class="button is-small is-primary is-rounded is-outlined" href="/parts/{{ $parts[$i]->id }}">Show</a>
+                                @if ($supplier)
+                                    <a class="button is-small is-primary is-rounded is-outlined"
+                                        href="/parts/{{ $parts[$i]->id }}">Show</a>
+                                @else
+                                    <a class="button is-small is-primary is-rounded is-outlined" href="#">Order</a>
+                                @endif
                             </td>
                         </tr>
                     @endfor

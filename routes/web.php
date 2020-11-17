@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplyController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/supply', SupplyController::class);
 Route::resource('/parts', PartController::class);
 Route::resource('/manager', ManagerController::class);
+Route::resource('/suppliers', SupplierController::class);

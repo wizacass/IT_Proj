@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlanePart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
@@ -15,8 +14,10 @@ class PartController extends Controller
 
     public function index()
     {
-        $supplier = Auth::user()->supplier;
-        $parts = $supplier->parts;
+        $user = Auth::user();
+        $supplier = $user->supplier;
+        $parts = ($user->role->id == 2) ? $supplier->parts : PlanePart::all();
+    
         return view('parts.index', compact('supplier', 'parts'));
     }
 
