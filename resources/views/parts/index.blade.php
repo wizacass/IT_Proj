@@ -38,8 +38,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="container has-text-centered">
-            <a class="button is-primary is-rounded is-large" href="/parts/create">Add new part</a>
-        </div>
+        @if ($supplier)
+            <div class="container has-text-centered">
+                <a class="button is-primary is-rounded is-large" href="/parts/create">Add new part</a>
+            </div>
+        @endif
     </div>
 @endsection
