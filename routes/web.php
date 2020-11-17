@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplyController;
@@ -28,3 +29,4 @@ Route::resource('/supply', SupplyController::class);
 Route::resource('/parts', PartController::class);
 Route::resource('/manager', ManagerController::class);
 Route::resource('/suppliers', SupplierController::class);
+Route::resource('/orders', OrderController::class);
