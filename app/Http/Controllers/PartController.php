@@ -27,6 +27,7 @@ class PartController extends Controller
 
     public function store()
     {
+        $supplier = Auth::user()->supplier;
         $stringValidators = ['required', 'min:3', 'max:255'];
         $attributes = request()->validate([
             'manufacturer' => $stringValidators,
@@ -36,6 +37,8 @@ class PartController extends Controller
             'price' => ['required', 'numeric', 'min:0.01'],
             'amount' => ['required', 'integer', 'min:1'],
         ]);
+        
+        $attributes += ['supplier_id' => $supplier->id];
 
         $part = new PlanePart($attributes);
         $part->save();

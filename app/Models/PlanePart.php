@@ -16,5 +16,11 @@ class PlanePart extends Model
         'delivery_time',
         'price',
         'amount',
+        'supplier_id'
     ];
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');    
+    }
 }

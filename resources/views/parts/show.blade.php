@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-hero subtitle='"Supplier"'> {{ $part->part_type }} {{ $part->model }}</x-hero>
+    <x-hero subtitle='"{{ $part->supplier->name }}"'> {{ $part->part_type }} {{ $part->model }}</x-hero>
     <div class="container" style="padding-top: 1em">
         {{-- <div class="columns">
             <div class="column"> --}}
