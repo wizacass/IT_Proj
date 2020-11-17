@@ -12,11 +12,6 @@ class SupplierController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $suppliers = Supplier::All();
@@ -44,15 +39,10 @@ class SupplierController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Supplier $supplier)
     {
-        //
+        $parts = $supplier->parts;
+        return view('parts.index', compact('parts'));
     }
 
     /**

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($supplier)
-        <x-hero>"{{ $supplier->name }}" parts</x-hero>
+    @if ($supplier ?? '')
+        <x-hero>"{{ $supplier ?? ''->name }}" parts</x-hero>
     @else
         <x-hero>Parts list</x-hero>
     @endif
@@ -26,7 +26,7 @@
                             <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
                             <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
                             <td class="has-text-centered">
-                                @if ($supplier)
+                                @if ($supplier ?? '')
                                     <a class="button is-small is-primary is-rounded is-outlined"
                                         href="/parts/{{ $parts[$i]->id }}">Show</a>
                                 @else
@@ -38,7 +38,7 @@
                 </tbody>
             </table>
         </div>
-        @if ($supplier)
+        @if ($supplier ?? '')
             <div class="container has-text-centered">
                 <a class="button is-primary is-rounded is-large" href="/parts/create">Add new part</a>
             </div>

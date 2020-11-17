@@ -18,7 +18,8 @@
                             <td> {{ $suppliers[$i]->name }} </td>
                             <td> {{ $suppliers[$i]->country }} </td>
                             <td class="has-text-centered">
-                                <a class="button is-small is-primary is-rounded is-outlined" href="#">View parts</a>
+                                <a class="button is-small is-primary is-rounded is-outlined"
+                                    href="/suppliers/{{ $suppliers[$i]->id }}">View parts</a>
                             </td>
                         </tr>
                     @endfor
