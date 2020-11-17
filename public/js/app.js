@@ -14692,6 +14692,23 @@ Vue.component('mainmenu', __webpack_require__(/*! ./components/menu.vue */ "./re
 var menuApp = new Vue({
   el: '#mainMenu'
 });
+var dynamicInputs = new Vue({
+  el: '#orderForm',
+  data: {
+    count: 0,
+    message: "Hello vue!"
+  },
+  methods: {
+    add: function add() {
+      this.count++;
+    },
+    remove: function remove() {
+      if (this.count > 0) {
+        this.count--;
+      }
+    }
+  }
+});
 
 /***/ }),
 
