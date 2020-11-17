@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-hero>Place a new order</x-hero>
+    <x-hero subtitle="Please choose parts from the list">Place a new order</x-hero>
     <div class="container" style="padding-top: 1em">
         <form method="POST" id="orderForm" action="/orders">
             @csrf
@@ -26,26 +26,27 @@
             <div class="box" v-if="count > 0">
                 <div class="level" v-for="i in count">
                     <div class="level-item">
-                        <p> @{{ i }} </p>
+                        <p><b>@{{ i }}</b></p>
                     </div>
                     <div class="level-item">
                         <div class="select is-fullwidth">
                             <select name=parts[]>
                                 <option>Select a part</option>
                                 @foreach ($parts as $part)
-                                    <option value="{{ $part->id }}"> {{ $part->part_type }} {{ $part->model }} </option>
+                                    <option value="{{ $part->id }}">[{{ $part->supplier->name }}] {{ $part->part_type }}
+                                        {{ $part->model }} </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="level-item">
-                        <x-inlineinput label="Amount" for="part_counts[]" type="number"/>
+                        <x-inlineinput for="part_counts[]" type="number" placeholder="Amount" />
                     </div>
                 </div>
             </div>
 
             <div class="field has-text-centered">
-                <button class="button is-primary is-rounded is-large" type="submit">Confirm</button>
+                <button class="button is-primary is-rounded is-large" type="submit">Next</button>
             </div>
         </form>
     </div>
