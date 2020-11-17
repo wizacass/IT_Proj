@@ -47,11 +47,21 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');
+    }
+
     public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)) {
             return true;
         }
         abort(401, 'This action is unauthorized.');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role->name == $role;
     }
 }
