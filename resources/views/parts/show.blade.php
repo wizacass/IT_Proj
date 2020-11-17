@@ -32,6 +32,10 @@
                                     <th>Delivery time</th>
                                     <td> {{ $part->delivery_time }} days </td>
                                 </tr>
+                                <tr>
+                                    <th>In stock</th>
+                                    <td> {{ $part->amount }} </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

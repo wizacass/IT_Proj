@@ -10,7 +10,7 @@
                     <th>Part type</th>
                     <th>Model</th>
                     <th>Price</th>
-                    <th>Amount</th>
+                    <th>In stock</th>
                     <th></th>
                 </thead>
                 <tbody>

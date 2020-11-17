@@ -37,7 +37,7 @@ class PartController extends Controller
             'price' => ['required', 'numeric', 'min:0.01'],
             'amount' => ['required', 'integer', 'min:1'],
         ]);
-        
+
         $attributes += ['supplier_id' => $supplier->id];
 
         $part = new PlanePart($attributes);
@@ -51,27 +51,21 @@ class PartController extends Controller
         return view('parts.show', compact('part'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(PlanePart $part)
     {
-        dd($part);
+        return view('parts.edit', compact('part'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(PlanePart $part)
     {
-        //
+        $attributes = request()->validate([
+            'delivery_time' => ['required', 'integer', 'min:1'],
+            'price' => ['required', 'numeric', 'min:0.01'],
+            'amount' => ['required', 'integer', 'min:0'],
+        ]);
+        $part->update($attributes);
+
+        return redirect("/parts/$part->id");
     }
 
     public function destroy(PlanePart $part)
