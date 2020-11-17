@@ -14695,8 +14695,7 @@ var menuApp = new Vue({
 var dynamicInputs = new Vue({
   el: '#orderForm',
   data: {
-    count: 0,
-    message: "Hello vue!"
+    count: 0
   },
   methods: {
     add: function add() {
