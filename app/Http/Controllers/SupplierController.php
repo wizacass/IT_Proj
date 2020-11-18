@@ -10,6 +10,7 @@ class SupplierController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:manager');
     }
 
     public function index()
