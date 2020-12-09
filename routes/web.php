@@ -32,3 +32,4 @@ Route::resource('/manager', ManagerController::class);
 Route::resource('/suppliers', SupplierController::class);
 Route::resource('/orders', OrderController::class);
 Route::get('/suppliers/{id}/order', [SupplierController::class, 'order']);
+Route::post('/parts/search', [PartController::class, 'search']);

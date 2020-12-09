@@ -77,4 +77,17 @@ class PartController extends Controller
 
         return redirect("/parts/$part->id");
     }
+
+    public function search()
+    {
+        $input = request()->search_input;
+        $like = "%$input%";
+
+        $user = Auth::user();
+        $supplier = $user->supplier;
+        $parts = PlanePart::where('part_type', 'like', $like)->get();
+        $isManager = $user->hasRole('manager');
+    
+        return view('parts.index', compact('supplier', 'parts', 'isManager'));
+    }
 }
