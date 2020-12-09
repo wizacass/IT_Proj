@@ -18,4 +18,9 @@ class Order extends Model
     {
         return $this->belongsTo('App\Models\DeliveryStatus', 'delivery_status_id');
     }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\ProductBalance');
+    }
 }
