@@ -29,7 +29,7 @@
                                 @if ($user->hasRole('manager'))
                                     <i> {{ $orders[$i]->status->name }} </i>
                                 @else
-                                    <a class="button is-primary is-small is-rounded is-outlined" href>Details</a>
+                                    <a class="button is-primary is-small is-rounded is-outlined" href="/orders/{{ $orders[$i]->id }}">Details</a>
                                 @endif
                             </td>
                         </tr>

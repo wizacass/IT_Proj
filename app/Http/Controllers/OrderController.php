@@ -79,15 +79,9 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -113,14 +107,10 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delivery_status_id = 4;
+        $order->save();
+        return redirect("/orders/$order->id");
     }
 }
