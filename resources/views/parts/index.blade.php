@@ -13,7 +13,7 @@
                     <th>No.</th>
                     <th>Part type</th>
                     <th>Manufacturer</th>
-                    @if (!$canOrder)
+                    @if ($isManager)
                         <th>Supplier</th>
                     @endif
                     <th>Model</th>
@@ -28,9 +28,9 @@
                             <td class="has-text-right"> {{ $i + 1 }} </td>
                             <td class="has-text-centered"> {{ $parts[$i]->part_type }} </td>
                             <td class="has-text-centered">{{ $parts[$i]->manufacturer }}</td>
-                            @if (!$canOrder)
+                            @if ($isManager)
                                 <td class="has-text-centered">
-                                    <a href="/suppliers/{{ $parts[$i]->supplier->id }}"> 
+                                    <a href="/suppliers/{{ $parts[$i]->supplier->id }}">
                                         {{ $parts[$i]->supplier->name }}
                                     </a>
                                 </td>
@@ -51,10 +51,6 @@
         @if ($supplier ?? '' != null)
             <div class="container has-text-centered">
                 <a class="button is-primary is-rounded is-large" href="/parts/create">Add new part</a>
-            </div>
-        @elseif ($canOrder)
-            <div class="container has-text-centered">
-                <a class="button is-primary is-rounded is-large" href="/suppliers/{{ $id }}/order">Order</a>
             </div>
         @endif
     </div>

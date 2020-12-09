@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Supplier;
 
 class SupplierController extends Controller
@@ -44,10 +43,7 @@ class SupplierController extends Controller
     public function show(Supplier $supplier)
     {
         $parts = $supplier->parts;
-        $id = $supplier->id;
-        $isManager = Auth::user()->hasRole('manager');
-        $canOrder = true;
-        return view('parts.index', compact('parts', 'isManager', 'id', 'canOrder'));
+        return view('manager.parts', compact('parts', 'supplier'));
     }
 
     public function order($id)
