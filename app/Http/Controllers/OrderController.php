@@ -2,41 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\PlanePart;
+use App\Models\ProductBalance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('orders.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $parts = PlanePart::all();
         return view('orders.create', compact('parts'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store()
     {
-        dd($request);
+        $attributes = request()->validate([
+            "user_id" => ['required', 'exists:users,id'],
+            "supplier_id" => ['required', 'exists:suppliers,id'],
+            "goods.*" => ['integer', 'distinct'],
+            "amounts.*" => ['integer', 'min:1'],
+        ]);
+        $count = count($attributes["goods"]);        
+        $sum = 0;
+        $delivery = 0;
+
+        $order = new Order();
+        $order->parts_count = $count;
+        $order->user_id = $attributes["user_id"];
+        $order->supplier_id = $attributes["supplier_id"];
+        $order->sum = $sum;
+        $order->expected_delivery = Carbon::now();
+        $order->save();
+
+        for ($i = 0; $i < count($attributes["goods"]); $i++) {
+            $product_id = $attributes["goods"][$i];
+            $amount = $attributes["amounts"][$i];
+            
+            $product = PlanePart::find($product_id);
+            $sum += $product->price * $amount;
+            if ($product->delivery_time > $delivery)
+            {
+                $delivery = $product->delivery_time;
+            }
+
+            $new_product = new ProductBalance();
+            $new_product->amount = $amount;
+            $new_product->plane_part_id = $product->id;
+            $new_product->order_id = $order->id;
+            $new_product->save();
+        }
+        
+        $order->sum = $sum;
+        $order->expected_delivery = Carbon::now()->add($delivery, 'day');
+        $order->save();
+
+        return redirect('/orders');
     }
 
     /**

@@ -17,7 +17,6 @@
                     @endif
                     <th>Model</th>
                     <th>Price</th>
-                    <th>In stock</th>
                     @if ($supplier ?? '' != null)
                         <th></th>
                     @endif
@@ -32,7 +31,6 @@
                             @endif
                             <td class="has-text-centered"> {{ $parts[$i]->model }} </td>
                             <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
-                            <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
                             <td class="has-text-centered">
                                 @if ($supplier ?? '' != null)
                                     <a class="button is-small is-primary is-rounded is-outlined"
