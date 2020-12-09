@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\returnSelf;
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -20,6 +22,8 @@ class HomeController extends Controller
                 return redirect('/manager');
             case 2:
                 return redirect('/supply');
+            case 3:
+                return redirect('/admin');
             default:
                 return view('home', compact('user'));
         }

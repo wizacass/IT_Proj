@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PartController;
@@ -33,3 +34,4 @@ Route::resource('/suppliers', SupplierController::class);
 Route::resource('/orders', OrderController::class);
 Route::get('/suppliers/{id}/order', [SupplierController::class, 'order']);
 Route::post('/parts/search', [PartController::class, 'search']);
+Route::resource('/admin', AdminController::class);

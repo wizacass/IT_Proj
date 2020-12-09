@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PlanePart;
 use Illuminate\Http\Request;
-use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:executive');
     }
-
+    
     public function index()
     {
         $user = Auth::user();
-        $suppliers = $user->hasRole('executive') ?
-            Supplier::All() :
-            Supplier::where('is_active', True)->get();
-        return view('supplier.index', compact('suppliers', 'user'));
+        return view('executive.index', compact('user'));
     }
 
     /**
@@ -44,23 +40,15 @@ class SupplierController extends Controller
         //
     }
 
-    public function show(Supplier $supplier)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $parts = PlanePart::where([
-            ['supplier_id', "$supplier->id"],
-            ['is_orderable', True]
-        ])->get();
-        return view('manager.parts', compact('parts', 'supplier'));
-    }
-
-    public function order($id)
-    {
-        $supplier = Supplier::find($id);
-        $parts = PlanePart::where([
-            ['supplier_id', "$id"],
-            ['is_orderable', True]
-        ])->get();
-        return view('orders.create', compact('parts', 'supplier'));
+        //
     }
 
     /**
@@ -86,11 +74,14 @@ class SupplierController extends Controller
         //
     }
 
-    public function destroy(Supplier $supplier)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $supplier->is_active = !$supplier->is_active;
-        $supplier->save();
-
-        return redirect("/suppliers");
+        //
     }
 }

@@ -18,8 +18,24 @@
                             <td class="has-text-centered"> {{ $suppliers[$i]->name }} </td>
                             <td class="has-text-centered"> {{ $suppliers[$i]->country }} </td>
                             <td class="has-text-centered">
-                                <a class="button is-small is-primary is-rounded is-outlined"
-                                    href="/suppliers/{{ $suppliers[$i]->id }}">View parts</a>
+                                @if ($user->hasRole('executive'))
+                                    <form method="POST" action="/suppliers/{{ $suppliers[$i]->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        @if ($suppliers[$i]->is_active)
+                                            <button class="button is-danger is-rounded is-small is-outlined" type="submit">
+                                                Disable
+                                            </button>
+                                        @else
+                                            <button class="button is-info is-rounded is-small is-outlined" type="submit">
+                                                Enable
+                                            </button>
+                                        @endif
+                                    </form>
+                                @else
+                                    <a class="button is-small is-primary is-rounded is-outlined"
+                                        href="/suppliers/{{ $suppliers[$i]->id }}">View parts</a>
+                                @endif
                             </td>
                         </tr>
                     @endfor
