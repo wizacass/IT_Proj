@@ -29,7 +29,7 @@ class OrderController extends Controller
             "goods.*" => ['integer', 'distinct'],
             "amounts.*" => ['integer', 'min:1'],
         ]);
-        $count = count($attributes["goods"]);        
+        $count = count($attributes["goods"]);
         $sum = 0;
         $delivery = 0;
 
@@ -44,11 +44,10 @@ class OrderController extends Controller
         for ($i = 0; $i < count($attributes["goods"]); $i++) {
             $product_id = $attributes["goods"][$i];
             $amount = $attributes["amounts"][$i];
-            
+
             $product = PlanePart::find($product_id);
             $sum += $product->price * $amount;
-            if ($product->delivery_time > $delivery)
-            {
+            if ($product->delivery_time > $delivery) {
                 $delivery = $product->delivery_time;
             }
 
@@ -58,7 +57,7 @@ class OrderController extends Controller
             $new_product->order_id = $order->id;
             $new_product->save();
         }
-        
+
         $order->sum = $sum;
         $order->expected_delivery = Carbon::now()->add($delivery, 'day');
         $order->save();
