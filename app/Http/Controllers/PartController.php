@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlanePart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PartController extends Controller
@@ -15,9 +14,13 @@ class PartController extends Controller
 
     public function index()
     {
-        $supplier = Auth::user()->supplier;
-        $parts = $supplier->parts;
-        return view('parts.index', compact('supplier', 'parts'));
+        $user = Auth::user();
+        $supplier = $user->supplier;
+        $parts = ($user->hasRole('supplier')) ? $supplier->parts : PlanePart::all();
+        $isManager = $user->hasRole('manager');
+        $canOrder = false;
+    
+        return view('parts.index', compact('supplier', 'parts', 'isManager', 'canOrder'));
     }
 
     public function create()

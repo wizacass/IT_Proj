@@ -4,20 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Supplier;
 
-class SupplierController extends Controller
+class SupplyController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:manager');
+        $this->middleware('role:supplier');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $suppliers = Supplier::All();
-        return view('supplier.index', compact('suppliers'));
+        $user = Auth::user();
+        return view('supply.index', compact('user'));
     }
 
     /**
@@ -41,20 +45,15 @@ class SupplierController extends Controller
         //
     }
 
-    public function show(Supplier $supplier)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $parts = $supplier->parts;
-        $id = $supplier->id;
-        $isManager = Auth::user()->hasRole('manager');
-        $canOrder = true;
-        return view('parts.index', compact('parts', 'isManager', 'id', 'canOrder'));
-    }
-
-    public function order($id)
-    {
-        $supplier = Supplier::find($id);
-        $parts = $supplier->parts;
-        return view('orders.create', compact('parts', 'supplier'));
+        //
     }
 
     /**

@@ -16,6 +16,8 @@ class HomeController extends Controller
         $user = Auth::user();
 
         switch ($user->role_id) {
+            case 1:
+                return redirect('/manager');
             case 2:
                 return redirect('/supply');
             default:
