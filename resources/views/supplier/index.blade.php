@@ -15,8 +15,8 @@
                     @for ($i = 0; $i < count($suppliers); $i++)
                         <tr>
                             <td class="has-text-right"> {{ $i + 1 }} </td>
-                            <td> {{ $suppliers[$i]->name }} </td>
-                            <td> {{ $suppliers[$i]->country }} </td>
+                            <td class="has-text-centered"> {{ $suppliers[$i]->name }} </td>
+                            <td class="has-text-centered"> {{ $suppliers[$i]->country }} </td>
                             <td class="has-text-centered">
                                 <a class="button is-small is-primary is-rounded is-outlined"
                                     href="/suppliers/{{ $suppliers[$i]->id }}">View parts</a>

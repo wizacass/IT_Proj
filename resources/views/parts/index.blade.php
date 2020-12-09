@@ -12,25 +12,31 @@
                 <thead class="has-text-centered">
                     <th>No.</th>
                     <th>Part type</th>
+                    @if ($isManager ?? '')
+                        <th>Manufacturer</th>
+                    @endif
                     <th>Model</th>
                     <th>Price</th>
                     <th>In stock</th>
-                    <th></th>
+                    @if ($supplier ?? '' != null)
+                        <th></th>
+                    @endif
                 </thead>
                 <tbody>
                     @for ($i = 0; $i < count($parts); $i++)
                         <tr>
                             <td class="has-text-right"> {{ $i + 1 }} </td>
-                            <td> {{ $parts[$i]->part_type }} </td>
-                            <td> {{ $parts[$i]->model }} </td>
+                            <td class="has-text-centered"> {{ $parts[$i]->part_type }} </td>
+                            @if ($isManager ?? '' ?? '' != null)
+                                <td class="has-text-centered">{{ $parts[$i]->manufacturer }}</td>
+                            @endif
+                            <td class="has-text-centered"> {{ $parts[$i]->model }} </td>
                             <td class="has-text-right"> {{ $parts[$i]->price }}$ </td>
                             <td class="has-text-right"> {{ $parts[$i]->amount }} </td>
                             <td class="has-text-centered">
                                 @if ($supplier ?? '' != null)
                                     <a class="button is-small is-primary is-rounded is-outlined"
                                         href="/parts/{{ $parts[$i]->id }}">Show</a>
-                                @else
-                                    <a class="button is-small is-primary is-rounded is-outlined" href="#">Order</a>
                                 @endif
                             </td>
                         </tr>
@@ -41,6 +47,10 @@
         @if ($supplier ?? '' != null)
             <div class="container has-text-centered">
                 <a class="button is-primary is-rounded is-large" href="/parts/create">Add new part</a>
+            </div>
+        @elseif ($isManager ?? '')
+            <div class="container has-text-centered">
+                <a class="button is-primary is-rounded is-large" href="/suppliers/{{ $id }}/order">Order</a>
             </div>
         @endif
     </div>

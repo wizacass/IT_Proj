@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplyController;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,4 @@ Route::resource('/parts', PartController::class);
 Route::resource('/manager', ManagerController::class);
 Route::resource('/suppliers', SupplierController::class);
 Route::resource('/orders', OrderController::class);
+Route::get('/suppliers/{id}/order', [SupplierController::class, 'order']);
