@@ -11,7 +11,11 @@
                     <th>Sum</th>
                     <th>Parts Count</th>
                     <th>Expected Delivery</th>
-                    <th>Status</th>
+                    @if ($user->hasRole('manager'))
+                        <th>Status</th>
+                    @else
+                        <th></th>
+                    @endif
                 </thead>
                 <tbody>
                     @for ($i = 0; $i < count($orders); $i++)
@@ -22,7 +26,11 @@
                             <td class="has-text-right"> {{ $orders[$i]->parts_count }} </td>
                             <td class="has-text-right"> {{ $orders[$i]->expected_delivery }} </td>
                             <td class="has-text-centered">
-                                <i> {{ $orders[$i]->status->name }} </i>
+                                @if ($user->hasRole('manager'))
+                                    <i> {{ $orders[$i]->status->name }} </i>
+                                @else
+                                    <a class="button is-primary is-small is-rounded is-outlined" href>Details</a>
+                                @endif
                             </td>
                         </tr>
                     @endfor

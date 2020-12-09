@@ -19,8 +19,14 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id)->get();
-        return view('orders.index', compact('orders'));
+        if ($user->hasRole('manager')) {
+            $orders = Order::where('user_id', $user->id)->get();
+        } else if ($user->hasRole('supplier')) {
+            $orders = Order::where('supplier_id', $user->supplier_id)->get();
+        } else {
+            $orders = Order::all();
+        }
+        return view('orders.index', compact('orders', 'user'));
     }
 
     public function create()
