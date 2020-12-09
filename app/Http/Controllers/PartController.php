@@ -16,9 +16,11 @@ class PartController extends Controller
     {
         $user = Auth::user();
         $supplier = $user->supplier;
-        $parts = ($user->hasRole('supplier')) ? $supplier->parts : PlanePart::all();
+        $parts = ($user->hasRole('supplier')) ?
+            $supplier->parts :
+            PlanePart::where('is_orderable', True)->get();
         $isManager = $user->hasRole('manager');
-    
+
         return view('parts.index', compact('supplier', 'parts', 'isManager'));
     }
 
@@ -85,9 +87,12 @@ class PartController extends Controller
 
         $user = Auth::user();
         $supplier = $user->supplier;
-        $parts = PlanePart::where('part_type', 'like', $like)->get();
+        $parts = PlanePart::where([
+            ['part_type', 'like', $like],
+            ['is_orderable', True]
+        ])->get();
         $isManager = $user->hasRole('manager');
-    
+
         return view('parts.index', compact('supplier', 'parts', 'isManager'));
     }
 }

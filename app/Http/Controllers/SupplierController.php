@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlanePart;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 
@@ -42,14 +43,20 @@ class SupplierController extends Controller
 
     public function show(Supplier $supplier)
     {
-        $parts = $supplier->parts;
+        $parts = PlanePart::where([
+            ['supplier_id', "$supplier->id"],
+            ['is_orderable', True]
+        ])->get();
         return view('manager.parts', compact('parts', 'supplier'));
     }
 
     public function order($id)
     {
         $supplier = Supplier::find($id);
-        $parts = $supplier->parts;
+        $parts = PlanePart::where([
+            ['supplier_id', "$id"],
+            ['is_orderable', True]
+        ])->get();
         return view('orders.create', compact('parts', 'supplier'));
     }
 
