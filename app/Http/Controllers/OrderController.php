@@ -7,12 +7,20 @@ use App\Models\PlanePart;
 use App\Models\ProductBalance;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        return view('orders.index');
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('orders.index', compact('orders'));
     }
 
     public function create()
