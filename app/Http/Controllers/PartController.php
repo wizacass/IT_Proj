@@ -16,9 +16,11 @@ class PartController extends Controller
     {
         $user = Auth::user();
         $supplier = $user->supplier;
-        $parts = ($user->role->id == 2) ? $supplier->parts : PlanePart::all();
+        $parts = ($user->hasRole('supplier')) ? $supplier->parts : PlanePart::all();
+        $isManager = $user->hasRole('manager');
+        $canOrder = false;
     
-        return view('parts.index', compact('supplier', 'parts'));
+        return view('parts.index', compact('supplier', 'parts', 'isManager', 'canOrder'));
     }
 
     public function create()

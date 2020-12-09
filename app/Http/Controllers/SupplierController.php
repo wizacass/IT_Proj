@@ -46,7 +46,8 @@ class SupplierController extends Controller
         $parts = $supplier->parts;
         $id = $supplier->id;
         $isManager = Auth::user()->hasRole('manager');
-        return view('parts.index', compact('parts', 'isManager', 'id'));
+        $canOrder = true;
+        return view('parts.index', compact('parts', 'isManager', 'id', 'canOrder'));
     }
 
     public function order($id)
