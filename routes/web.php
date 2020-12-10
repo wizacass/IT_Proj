@@ -6,7 +6,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SupplyController;
-use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,11 +26,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/supply', SupplyController::class);
+
+Route::get('/manager', [ManagerController::class, 'index']);
+Route::get('/supply', [SupplyController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index']);
+
 Route::resource('/parts', PartController::class);
-Route::resource('/manager', ManagerController::class);
-Route::resource('/suppliers', SupplierController::class);
-Route::resource('/orders', OrderController::class);
-Route::get('/suppliers/{id}/order', [SupplierController::class, 'order']);
 Route::post('/parts/search', [PartController::class, 'search']);
-Route::resource('/admin', AdminController::class);
+
+Route::resource('/suppliers', SupplierController::class);
+Route::get('/suppliers/{id}/order', [SupplierController::class, 'order']);
+
+Route::resource('/orders', OrderController::class);

@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\PlanePart;
 use App\Models\ProductBalance;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -84,27 +83,14 @@ class OrderController extends Controller
         return view('orders.show', compact('order'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return redirect('/orders');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        return redirect('/orders');
     }
 
     public function destroy(Order $order)
