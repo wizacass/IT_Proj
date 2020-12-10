@@ -18,7 +18,7 @@ class CreatePlanePartsTable extends Migration
             $table->string('manufacturer');
             $table->string('model');
             $table->decimal('price');
-            $table->unsignedInteger('amount');
+            $table->unsignedInteger('amount')->default(0);
             $table->unsignedInteger('delivery_time');
             $table->string('part_type');
             $table->timestamps();
