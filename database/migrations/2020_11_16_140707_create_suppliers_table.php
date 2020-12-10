@@ -17,6 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('country');
+            $table->boolean('is_active')->default(True);
             $table->timestamps();
         });
     }
