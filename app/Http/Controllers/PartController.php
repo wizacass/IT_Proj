@@ -39,7 +39,7 @@ class PartController extends Controller
         $stringValidators = ['required', 'min:3', 'max:255'];
         $attributes = request()->validate([
             'manufacturer' => $stringValidators,
-            'model' => $stringValidators,
+            'model' => ['required', 'min:3', 'max:255', 'unique:plane_parts,model'],
             'part_type' => $stringValidators,
             'delivery_time' => ['required', 'integer', 'min:1'],
             'price' => ['required', 'numeric', 'min:0.01'],
