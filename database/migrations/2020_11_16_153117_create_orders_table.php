@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('sum');
             $table->unsignedInteger('parts_count');
             $table->dateTime('expected_delivery');
-            $table->unsignedBigInteger('delivery_status_id');
+            $table->unsignedBigInteger('delivery_status_id')->default(1);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('supplier_id');
             $table->timestamps();
