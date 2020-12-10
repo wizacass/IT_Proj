@@ -25,7 +25,14 @@ class OrderController extends Controller
         } else {
             $orders = Order::all();
         }
-        return view('orders.index', compact('orders', 'user'));
+
+        $sum = 0;
+        foreach ($orders as $order)
+        {
+            $sum += $order->sum;
+        }
+
+        return view('orders.index', compact('orders', 'user', 'sum'));
     }
 
     public function create()

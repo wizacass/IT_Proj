@@ -27,7 +27,7 @@
                             <tr>
                                 <td class="has-text-right"> {{ $i + 1 }} </td>
                                 <td class="has-text-centered"> {{ $orders[$i]->supplier->name }} </td>
-                                <td class="has-text-right"> {{ $orders[$i]->sum }} </td>
+                                <td class="has-text-right"> {{ $orders[$i]->sum }}$ </td>
                                 <td class="has-text-right"> {{ $orders[$i]->parts_count }} </td>
                                 <td class="has-text-right"> {{ $orders[$i]->expected_delivery }} </td>
                                 <td class="has-text-centered">
@@ -44,5 +44,8 @@
                 </table>
             </div>
         @endif
+        <div class="container has-text-right">
+            <p class="subtitle"><b>Total sum: {{ number_format($sum, 2, '.', '') }}$</b></p>
+        </div>
     </div>
 @endsection
