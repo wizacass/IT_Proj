@@ -43,7 +43,6 @@ class PartController extends Controller
             'part_type' => $stringValidators,
             'delivery_time' => ['required', 'integer', 'min:1'],
             'price' => ['required', 'numeric', 'min:0.01'],
-            'amount' => ['required', 'integer', 'min:1'],
         ]);
 
         $attributes += ['supplier_id' => $supplier->id];
@@ -69,7 +68,6 @@ class PartController extends Controller
         $attributes = request()->validate([
             'delivery_time' => ['required', 'integer', 'min:1'],
             'price' => ['required', 'numeric', 'min:0.01'],
-            'amount' => ['required', 'integer', 'min:0'],
         ]);
         $part->update($attributes);
 

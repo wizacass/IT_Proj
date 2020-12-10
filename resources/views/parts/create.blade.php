@@ -15,7 +15,6 @@
             <x-inlineinput label="Part type" for="part_type"/>
             <x-inlineinput label="Delivery time" for="delivery_time" type="number" subtitle="days"/>
             <x-inlineinput label="Price" for="price" type="number" subtitle="$"/>
-            <x-inlineinput label="Amount" for="amount" type="number"/>
 
             <div class="field has-text-centered">
                 <button class="button is-primary is-rounded is-large" type="submit">Add</button>

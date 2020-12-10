@@ -13,7 +13,6 @@
             <x-formerror />
             <x-inlineinput label="Delivery time" for="delivery_time" type="number" subtitle="days" value="{{ $part->delivery_time }}"/>
             <x-inlineinput label="Price" for="price" type="number" subtitle="$" value="{{ $part->price }}"/>
-            <x-inlineinput label="Amount" for="amount" type="number" value="{{ $part->amount }}"/>
 
             <div class="field has-text-centered">
                 <button class="button is-primary is-rounded is-large" type="submit">Update</button>
